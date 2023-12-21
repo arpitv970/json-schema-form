@@ -89,5 +89,5 @@
 }
 
 .json-form-subsec {
-  @apply border border-red-500 w-[100%];
+  @apply w-[100%];
 }
