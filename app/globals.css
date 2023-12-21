@@ -83,3 +83,11 @@
 .navbar > h1 {
   @apply text-2xl font-black;
 }
+
+.json-form {
+  @apply border border-border rounded-lg px-3 py-2 w-[99%] mx-auto grid grid-cols-2 items-center justify-center gap-5;
+}
+
+.json-form-subsec {
+  @apply border border-red-500 w-[100%];
+}
