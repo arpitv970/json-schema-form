@@ -22,7 +22,7 @@ const JSONEditor = ({ onSchemaChange }: PropsType) => {
         id='json-editor'
         placeholder='Type Your Schema...'
         onChange={handleChange}
-        rows={20}
+        className='json-editor-common'
       />
     </section>
   )
