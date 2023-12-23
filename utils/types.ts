@@ -15,7 +15,7 @@ export interface FormSchemaType {
   },
   pattern?: string,
   jsonKey: string,
-  uiType: "Number" | "Input" | "Group" | "Switch" | "Select" | "Radio",
+  uiType: React.HTMLInputTypeAttribute,
   level: number,
   placeholder?: string,
   subParameters?: FormSchemaType[],

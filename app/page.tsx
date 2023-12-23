@@ -1,29 +1,27 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormPage from "@/components/FormPage";
 import JSONEditor from "@/components/JSONEditor";
 import Navbar from "@/components/common/Navbar";
-import jsonToForm from "@/utils";
 import { FormSchemaType } from "@/utils/types";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
   const [uiSchema, setUiSchema] = useState<FormSchemaType[]>([]);
-  const [formStructure, setFormStructure] = useState<any>(null);
+  // const [formStructure, setFormStructure] = useState<any>(null);
 
   const { toast } = useToast();
 
   const handleSchemaChange = (newSchema: string) => {
     try {
       // convert the string to json
-      const parsedSchema: FormSchemaType[] = [JSON.parse(newSchema)]
-      setUiSchema(parsedSchema)
+      const parsedSchema: FormSchemaType[] = JSON.parse(newSchema)
 
       console.log('parsed schema: ', parsedSchema, typeof (parsedSchema))
+
       if (typeof (parsedSchema) === "object") {
-        setFormStructure(parsedSchema)
-      } else {
-        setFormStructure(null)
+        setUiSchema(parsedSchema)
+        // setFormStructure(parsedSchema)
       }
     } catch (error: any) {
       console.log((error as Error).name)
@@ -41,7 +39,7 @@ export default function Home() {
       <Navbar />
       <section className='json-form'>
         <JSONEditor onSchemaChange={handleSchemaChange} />
-        <FormPage />
+        <FormPage formSchema={uiSchema} />
       </section>
     </section>
   )
