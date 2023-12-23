@@ -8,17 +8,17 @@ import { FormSchemaType } from "@/utils/types";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
-  const [uiSchema, setUiSchema] = useState<string>('');
+  const [uiSchema, setUiSchema] = useState<FormSchemaType[]>([]);
   const [formStructure, setFormStructure] = useState<any>(null);
 
   const { toast } = useToast();
 
   const handleSchemaChange = (newSchema: string) => {
     try {
-      setUiSchema(newSchema)
-
       // convert the string to json
-      const parsedSchema: FormSchemaType[] = JSON.parse(newSchema)
+      const parsedSchema: FormSchemaType[] = [JSON.parse(newSchema)]
+      setUiSchema(parsedSchema)
+
       console.log('parsed schema: ', parsedSchema, typeof (parsedSchema))
       if (typeof (parsedSchema) === "object") {
         setFormStructure(parsedSchema)
@@ -31,7 +31,7 @@ export default function Home() {
         variant: 'destructive',
         title: 'Something went wrong!!',
         description: `${(error as Error).name === 'SyntaxError' ? 'Please use correct JSON Syntax' : (error as Error).message}`,
-        duration: 2000
+        duration: 2000,
       })
     }
   }
