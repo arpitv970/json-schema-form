@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormPage from "@/components/FormPage";
 import JSONEditor from "@/components/JSONEditor";
 import Navbar from "@/components/common/Navbar";
@@ -19,10 +19,20 @@ export default function Home() {
 
       // convert the string to json
       const parsedSchema: FormSchemaType[] = JSON.parse(newSchema)
-      console.log('parsed schema: ', parsedSchema)
-      setFormStructure(parsedSchema)
-    } catch (error) {
-      console.log(error)
+      console.log('parsed schema: ', parsedSchema, typeof (parsedSchema))
+      if (typeof (parsedSchema) === "object") {
+        setFormStructure(parsedSchema)
+      } else {
+        setFormStructure(null)
+      }
+    } catch (error: any) {
+      console.log((error as Error).name)
+      toast({
+        variant: 'destructive',
+        title: 'Something went wrong!!',
+        description: `${(error as Error).name === 'SyntaxError' ? 'Please use correct JSON Syntax' : (error as Error).message}`,
+        duration: 2000
+      })
     }
   }
 

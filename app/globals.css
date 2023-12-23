@@ -85,9 +85,9 @@
 }
 
 .json-form {
-  @apply border border-border rounded-lg px-3 py-2 w-[99%] mx-auto grid grid-cols-2 items-center justify-center gap-5;
+  @apply border border-border rounded-lg px-3 py-2 w-[99%] h-[100%] mx-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-5;
 }
 
 .json-form-subsec {
-  @apply w-[100%];
+  @apply w-[100%] h-[100%];
 }
